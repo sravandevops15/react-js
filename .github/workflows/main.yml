@@ -7,10 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+    runs-on: build-server
 
     steps:
       - name: Checkout code
