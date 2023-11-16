@@ -21,12 +21,12 @@ jobs:
       - name: Install dependencies
         run: |
           echo ${{ github.workspace }}
-          cd ${{ github.workspace }}
+          cd ${{ github.workspace }}/react-js/react-js
           npm install
 
       - name: Build
         run: |
-         cd ${{ github.workspace }}
+         cd ${{ github.workspace }}/react-js/react-js
          npm run build
 
       - name: Archive build artifacts
