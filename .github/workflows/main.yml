@@ -23,7 +23,7 @@ jobs:
           echo "hello"
           echo ${{ github.workspace }}
           cd ${{ github.workspace }}
-          npm install
+          sudo npm install
 
       - name: Build
         run: |
