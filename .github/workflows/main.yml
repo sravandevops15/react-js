@@ -20,6 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          echo "hello"
           echo ${{ github.workspace }}
           cd ${{ github.workspace }}/react-js/react-js
           npm install
