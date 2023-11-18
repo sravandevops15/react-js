@@ -22,8 +22,7 @@ jobs:
         run: |
           echo "hello"
           echo ${{ github.workspace }}
-          cd ${{ github.workspace }}
-          npm install
+          cd ${{ github.workspace }} ; npm install
 
       - name: Build
         run: |
