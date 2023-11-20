@@ -3,7 +3,7 @@ name: Build React App
 on:
   push:
     branches:
-    #  - master
+      - master
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo "hello"
+          echo "DevOps Engineer"
           echo ${{ github.workspace }}
           cd ${{ github.workspace }} ; npm install
 
