@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: build_instance
+    runs-on: build
 
     steps:
       - name: Checkout code
@@ -36,7 +36,7 @@ jobs:
           path: build/
 
   deploy:
-    runs-on: deploy_server
+    runs-on: deployment
     needs: build
 
     steps:
