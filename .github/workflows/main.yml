@@ -79,12 +79,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
-      - name: download to deployment
+      - name: download the artifact and copying to nginx
         run: |
           aws s3 cp s3://komali-17-2023/dev/ /var/www/html --recursive    
-      - name: Copying the nginx folder
-        run: | 
-         sudo mv ${{ github.workspace }}/build/* /var/www/html
+      # - name: Copying the nginx folder
+      #   run: | 
+      #    sudo mv ${{ github.workspace }}/build/* /var/www/html
       # - name: Configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v2
       #   with:
