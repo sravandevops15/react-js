@@ -1,6 +1,6 @@
 pipeline {
    agent {
-     label 'Build-server'
+     label 'build-server'
      }
      stages {
         stage ('Checkout') {
@@ -19,14 +19,14 @@ pipeline {
                 sh 'cd $WORKSPACE; npm run build'
            }
        } 
-       stage ('Deploying to nginx') {
-         steps {
-                node('Build-server'){
-                sh 'sudo ansible-playbook /opt/deploy.yaml'   
+         #stage ('Deploying to nginx') {
+          # steps {
+           #      node('build-server'){
+            #     sh 'sudo ansible-playbook /opt/deploy.yaml'   
        
-                }
-         }
-       }
+             #    }
+          #}
+        #}
  }
      
 }
