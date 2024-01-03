@@ -10,7 +10,8 @@ pipeline {
             }     
          stage ('Dependency-installation') {
               steps {
-                    sh 'cd $WORKSPACE; npm install'
+                    sh 'cd $WORKSPACE'
+                    sh 'npm install'
 
                 }
             }
