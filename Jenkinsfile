@@ -11,8 +11,9 @@ pipeline {
          stage ('Dependency-installation') {
               steps {
                     sh 'cd $WORKSPACE'
+                 script{
                     sh 'npm install'
-
+                 }
                 }
             }
          stage ('Building') {
