@@ -12,7 +12,7 @@ pipeline {
               steps {
                     sh 'cd $WORKSPACE'
                  script{
-                    sh 'npm install'
+                    sh 'sudo apt npm install'
                  }
                 }
             }
