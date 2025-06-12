@@ -1,4 +1,4 @@
-name: react application
+name: react applications
 on: push
 jobs:
   test:
