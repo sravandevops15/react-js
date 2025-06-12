@@ -1,4 +1,4 @@
-name: react application
+name: react applications
 on: push
 jobs:
   test:
@@ -14,19 +14,3 @@ jobs:
         run: npm ci
       - name: testing the code
         run: npm test
-  deployement:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: git-checkout
-        uses: actions/checkout@v3
-      - name: install NodeJs
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: installing dependencies
-        run: npm ci
-      - name: npm-Build
-        run: npm run build
-      - name: deploy
-        run: echo "deployed"
-          
