@@ -1,100 +1,16 @@
-name: Build React App
-
-on:
-  push:
-    branches:
-      - master
-
+name: react application
+on: push
 jobs:
-  build:
-    runs-on: build
-
+  test:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
+      - name: git-checkout
+        uses: actions/checkout@v3
+      - name: install nodejs
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
-
-      - name: Install dependencies
-        run: |
-          echo "DevOps Engineer"
-          echo ${{ github.workspace }}
-          cd ${{ github.workspace }} ; npm install
-
-      - name: Build
-        run: |
-          cd ${{ github.workspace }}
-          npm run build
-
-      - name: Install AWS CLI v2
-        run:  |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
-          unzip -q /tmp/awscliv2.zip -d /tmp
-          rm /tmp/awscliv2.zip
-          sudo /tmp/aws/install --update
-          rm -rf /tmp/aws/
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
-
-      - name: upload to s3
-        run: |
-          aws s3 cp build/ s3://komali-17-2023/dev/ --recursiv
-      
-      # - name: Archive build artifacts
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: build-artifacts
-      #     path: build/
-
-  deploy:
-    runs-on: deployment
-    needs: build
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # - name: Download build artifacts
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: build-artifacts
-      #     path: build/
-      - name: Install AWS CLI v2
-        run:  |
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
-          unzip -q /tmp/awscliv2.zip -d /tmp
-          rm /tmp/awscliv2.zip
-          sudo /tmp/aws/install --update
-          rm -rf /tmp/aws/
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
-      - name: download the artifact and copying to nginx
-        run: |
-          aws s3 cp s3://komali-17-2023/dev/ /var/www/html --recursive    
-      # - name: Copying the nginx folder
-      #   run: | 
-      #    sudo mv ${{ github.workspace }}/build/* /var/www/html
-      # - name: Configure AWS credentials
-      #   uses: aws-actions/configure-aws-credentials@v2
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: ap-south-1
-
-      # - name: download to deployment
-      #   run: |
-      #     aws s3 cp s3://komali-17-2023/dev/ /var/www/html --recursive
-          #aws s3 cp build/ s3://komali-17-2023/dev/  /var/www/html --recursive
-
-
+          node-version: 16
+      - name: installing dependencies
+        run: npm ci
+      - name: testing the code
+        run: npm test
