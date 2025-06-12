@@ -15,6 +15,7 @@ jobs:
       - name: testing the code
         run: npm test
   deployment:
+    needs: test
     runs-on: ubuntu-22.04
     steps:
       - name: Git-checkout
